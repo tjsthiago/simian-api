@@ -15,7 +15,7 @@ public class InMemoryDnaSequenceAnalysisRepository implements DnaSequenceAnalysi
 
     @Override
     public AnalysisData save(AnalysisData analysis) {
-        Boolean exists = this.exists(analysis);
+        boolean exists = this.exists(analysis);
 
         if(!exists) {
             this.analyzes.add(analysis);
