@@ -25,7 +25,7 @@ public class DnaSequenceAnalysisTest {
         DnaSequenceAnalysisRepository repository = new InMemoryDnaSequenceAnalysisRepository(analyzes);
         DnaSequenceAnalysis useCase = new DnaSequenceAnalysis(repository);
 
-        String[] dna = {"CCCCTA"};
+        String[] dna = {"ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"};
 
         Boolean isSimian = useCase.perform(dna);
 

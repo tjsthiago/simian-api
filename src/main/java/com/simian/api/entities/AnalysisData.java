@@ -6,7 +6,6 @@ public class AnalysisData {
 
     private Boolean isSimianDna;
 
-
     public AnalysisData(String hash, Boolean isSimianDna) {
         this.hash = hash;
         this.isSimianDna = isSimianDna;
