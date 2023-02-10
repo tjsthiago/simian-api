@@ -2,9 +2,6 @@ package com.simian.api.entities;
 
 import com.simian.api.entities.errors.InvalidDnaSequenceError;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -60,13 +57,17 @@ public class Dna {
 
             if (currentSymbol == lastSymbol) {
                 sameSymbolOccurrences++;
+
+                if(sameSymbolOccurrences >= IS_SIMAN_SEQUENCE_TARGET) {
+                    return true;
+                }
             } else {
-                sameSymbolOccurrences = 0;
+                sameSymbolOccurrences = 1;
             }
 
         }
 
-        return sameSymbolOccurrences >= IS_SIMAN_SEQUENCE_TARGET;
+        return false;
     }
 
     private Map<String, Long> mapNitrogenBaseSymbolOccurrences(List<String> dnaMatrixLineAsList) {
