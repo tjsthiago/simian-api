@@ -50,7 +50,7 @@ public class Dna {
 
             Map<String, Long> nitrogenBaseSymbolOccurrences = mapNitrogenBaseSymbolOcurrences(dnaNitrogenBaseList);
 
-            isSiman = getHighestMapCurrent(nitrogenBaseSymbolOccurrences) >= IS_SIMAN_COUNT;
+            isSiman = getHighestMapOcurrence(nitrogenBaseSymbolOccurrences) >= IS_SIMAN_COUNT;
 
             if(isSiman){
                break;
@@ -60,7 +60,7 @@ public class Dna {
         return isSiman;
     }
 
-    private static Long getHighestMapCurrent(Map<String, Long> nitrogenBaseSymbolOccurrences) {
+    private static Long getHighestMapOcurrence(Map<String, Long> nitrogenBaseSymbolOccurrences) {
         return nitrogenBaseSymbolOccurrences
                 .entrySet()
                 .stream()
