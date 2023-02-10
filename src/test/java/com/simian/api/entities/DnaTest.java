@@ -78,15 +78,21 @@ public class DnaTest {
     }
 
     @Test
-    public void shouldReturnTrueWhenASimianSequenceIsPresentInOneDnaSequencePart(){
-        String[] dnaSequence = {"CCCCTA", "CTGAGA", "CTGAGC", "TATTGT", "AGAGGG", "TCACTG" };
+    public void shouldReturnTrueWhenASimianSequenceIsPresentInOneDnaSequencePart() {
+        String[] dnaSequence = {"CCCCTA", "CTGAGA", "CTGAGC", "TATTGT", "AGAGGG", "TCACTG"};
         assertTrue(dna.isSimian(dnaSequence));
     }
 
     @Test
-    public void shouldReturnFalseWhenASimianSequenceIsNotPresentInOneDnaSequencePart(){
-        String[] dnaSequence = {"CTGAGC", "CTGAGA", "CTGAGC", "TATTGT", "AGAGGG", "TCACTG" };
+    public void shouldReturnTrueWhenASimianSequenceIsPresentInAVerticalWay() {
+        String[] dnaSequence = {"CCCCAA", "CTGAGC", "CTGAGC", "CTGAGC", "CTGAGC", "CTGAGC"};
         assertTrue(dna.isSimian(dnaSequence));
+    }
+
+    @Test
+    public void shouldReturnFalseWhenASimianSequenceIsNotPresentInOneDnaSequencePart() {
+        String[] dnaSequence = {"CCCAGC", "CTGAGC", "CTGAGC", "CTGAGC", "CTGAGC", "CTGAGC"};
+        assertFalse(dna.isSimian(dnaSequence));
     }
 
 }

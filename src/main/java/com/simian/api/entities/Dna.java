@@ -17,7 +17,7 @@ public class Dna {
 
     private static final String ALLOWED_NITROGEN_BASE_SYMBOL_REGEX = "\\w[ATCG]";
 
-    private static final Long IS_SIMAN_SEQUENCE_TARGET = 4L;
+    private static final int IS_SIMAN_SEQUENCE_TARGET = 4;
 
     private final Pattern pattern = Pattern.compile(ALLOWED_NITROGEN_BASE_SYMBOL_REGEX, Pattern.CASE_INSENSITIVE);
 
@@ -39,16 +39,8 @@ public class Dna {
     }
 
     private boolean validateHorizontally(char[][] dnaMatrix) {
-        for (char[] dnaMatrixLine : dnaMatrix) {
-            List<String> dnaNitrogenBaseList = new ArrayList<>();
-
-            for (char dnaNitrogenBaseItem: dnaMatrixLine) {
-                dnaNitrogenBaseList.add(String.valueOf(dnaNitrogenBaseItem));
-            }
-
-            Map<String, Long> nitrogenBaseSymbolOccurrences = mapNitrogenBaseSymbolOccurrences(dnaNitrogenBaseList);
-
-            if(getHighestNitrogenBaseSymbolOccurrence(nitrogenBaseSymbolOccurrences) >= IS_SIMAN_SEQUENCE_TARGET){
+        for (char[] dnaNitrogenBaseLineSequence : dnaMatrix) {
+            if(hasSimianSequenceOccurrences(dnaNitrogenBaseLineSequence)){
                return true;
             }
         }
@@ -56,13 +48,24 @@ public class Dna {
         return false;
     }
 
-    private static Long getHighestNitrogenBaseSymbolOccurrence(Map<String, Long> nitrogenBaseSymbolOccurrences) {
-        return nitrogenBaseSymbolOccurrences
-                .entrySet()
-                .stream()
-                .max(Comparator.comparing(Map.Entry::getValue))
-                .get()
-                .getValue();
+    private boolean hasSimianSequenceOccurrences(char[] dnaNitrogenBaseSequence) {
+        int sameSymbolOccurrences = 0;
+        char lastSymbol = dnaNitrogenBaseSequence[0];
+
+        for (int i = 0; i < dnaNitrogenBaseSequence.length; i++) {
+            if(i > 0) {
+                lastSymbol = dnaNitrogenBaseSequence[i -1];
+            }
+
+            char currentSymbol = dnaNitrogenBaseSequence[i];
+
+            if (currentSymbol == lastSymbol) {
+                sameSymbolOccurrences++;
+            }
+
+        }
+
+        return sameSymbolOccurrences >= IS_SIMAN_SEQUENCE_TARGET;
     }
 
     private Map<String, Long> mapNitrogenBaseSymbolOccurrences(List<String> dnaMatrixLineAsList) {
