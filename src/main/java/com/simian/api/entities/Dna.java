@@ -25,7 +25,6 @@ public class Dna {
         validateDnaSequence(dna);
 
         char[][] dnaMatrix = initDnaMatrix(dna);
-        printDnaMatrix(dnaMatrix);
 
         return isSimian(dnaMatrix);
     }
@@ -61,6 +60,8 @@ public class Dna {
 
             if (currentSymbol == lastSymbol) {
                 sameSymbolOccurrences++;
+            } else {
+                sameSymbolOccurrences = 0;
             }
 
         }
@@ -91,16 +92,6 @@ public class Dna {
         }
 
         return dnaMatrix;
-    }
-
-    private void printDnaMatrix(char[][] dnaMatrix){
-        for (char[] dnaMatrixLine : dnaMatrix) {
-            List<String> dnaMatrixLineAsList = new ArrayList<>();
-            for (char dataMatrixItem: dnaMatrixLine) {
-                dnaMatrixLineAsList.add(String.valueOf(dataMatrixItem));
-            }
-            System.out.println(dnaMatrixLineAsList);
-        }
     }
 
     private void validateDnaSequence(String[] dna) {

@@ -84,14 +84,59 @@ public class DnaTest {
     }
 
     @Test
-    public void shouldReturnTrueWhenASimianSequenceIsPresentInAVerticalWay() {
-        String[] dnaSequence = {"CCCCAA", "CTGAGC", "CTGAGC", "CTGAGC", "CTGAGC", "CTGAGC"};
-        assertTrue(dna.isSimian(dnaSequence));
+    public void shouldReturnTrueWhenASimianSequenceIsPresentInAVerticalWayInTheBeginningOfTheSequence() {
+        String[] simianSequenceOnTheFirstSequencePart = {"CCCCAA", "CTGAGC", "CTGAGC", "CTGAGC", "CTGAGC", "CTGAGC"};
+        String[] simianSequenceOnTheSecondSequencePart = {"CTGAGC", "CCCCAA", "CTGAGC", "CTGAGC", "CTGAGC", "CTGAGC"};
+        String[] simianSequenceOnTheThirdSequencePart = {"CTGAGC", "CTGAGC", "CCCCAA", "CTGAGC", "CTGAGC", "CTGAGC"};
+        String[] simianSequenceOnTheFourthSequencePart = {"CTGAGC", "CTGAGC", "CTGAGC", "CCCCAA", "CTGAGC", "CTGAGC"};
+        String[] simianSequenceOnTheFifthSequencePart = {"CTGAGC", "CTGAGC", "CTGAGC", "CTGAGC", "CCCCAA", "CTGAGC"};
+        String[] simianSequenceOnTheSixthSequencePart = {"CTGAGC", "CTGAGC", "CTGAGC", "CTGAGC", "CTGAGC", "CCCCAA"};
+
+        assertTrue(dna.isSimian(simianSequenceOnTheFirstSequencePart));
+        assertTrue(dna.isSimian(simianSequenceOnTheSecondSequencePart));
+        assertTrue(dna.isSimian(simianSequenceOnTheThirdSequencePart));
+        assertTrue(dna.isSimian(simianSequenceOnTheFourthSequencePart));
+        assertTrue(dna.isSimian(simianSequenceOnTheFifthSequencePart));
+        assertTrue(dna.isSimian(simianSequenceOnTheSixthSequencePart));
     }
 
     @Test
-    public void shouldReturnFalseWhenASimianSequenceIsNotPresentInOneDnaSequencePart() {
-        String[] dnaSequence = {"CCCAGC", "CTGAGC", "CTGAGC", "CTGAGC", "CTGAGC", "CTGAGC"};
+    public void shouldReturnTrueWhenASimianSequenceIsPresentInAVerticalWayInTheEndOfTheSequence() {
+        String[] simianSequenceOnTheFirstSequencePart = {"CCAAAA", "CTGAGC", "CTGAGC", "CTGAGC", "CTGAGC", "CTGAGC"};
+        String[] simianSequenceOnTheSecondSequencePart = {"CTGAGC", "CCAAAA", "CTGAGC", "CTGAGC", "CTGAGC", "CTGAGC"};
+        String[] simianSequenceOnTheThirdSequencePart = {"CTGAGC", "CTGAGC", "CCAAAA", "CTGAGC", "CTGAGC", "CTGAGC"};
+        String[] simianSequenceOnTheFourthSequencePart = {"CTGAGC", "CTGAGC", "CTGAGC", "CCAAAA", "CTGAGC", "CTGAGC"};
+        String[] simianSequenceOnTheFifthSequencePart = {"CTGAGC", "CTGAGC", "CTGAGC", "CTGAGC", "CCAAAA", "CTGAGC"};
+        String[] simianSequenceOnTheSixthSequencePart = {"CTGAGC", "CTGAGC", "CTGAGC", "CTGAGC", "CTGAGC", "CCAAAA"};
+
+        assertTrue(dna.isSimian(simianSequenceOnTheFirstSequencePart));
+        assertTrue(dna.isSimian(simianSequenceOnTheSecondSequencePart));
+        assertTrue(dna.isSimian(simianSequenceOnTheThirdSequencePart));
+        assertTrue(dna.isSimian(simianSequenceOnTheFourthSequencePart));
+        assertTrue(dna.isSimian(simianSequenceOnTheFifthSequencePart));
+        assertTrue(dna.isSimian(simianSequenceOnTheSixthSequencePart));
+    }
+
+    @Test
+    public void shouldReturnTrueWhenASimianSequenceIsPresentInAVerticalWayStartingInSecondIndexTheOfTheSequence() {
+        String[] simianSequenceOnTheFirstSequencePart = {"CAAAAC", "CTGAGC", "CTGAGC", "CTGAGC", "CTGAGC", "CTGAGC"};
+        String[] simianSequenceOnTheSecondSequencePart = {"CTGAGC", "CAAAAC", "CTGAGC", "CTGAGC", "CTGAGC", "CTGAGC"};
+        String[] simianSequenceOnTheThirdSequencePart = {"CTGAGC", "CTGAGC", "CAAAAC", "CTGAGC", "CTGAGC", "CTGAGC"};
+        String[] simianSequenceOnTheFourthSequencePart = {"CTGAGC", "CTGAGC", "CTGAGC", "CAAAAC", "CTGAGC", "CTGAGC"};
+        String[] simianSequenceOnTheFifthSequencePart = {"CTGAGC", "CTGAGC", "CTGAGC", "CTGAGC", "CAAAAC", "CTGAGC"};
+        String[] simianSequenceOnTheSixthSequencePart = {"CTGAGC", "CTGAGC", "CTGAGC", "CTGAGC", "CTGAGC", "CAAAAC"};
+
+        assertTrue(dna.isSimian(simianSequenceOnTheFirstSequencePart));
+        assertTrue(dna.isSimian(simianSequenceOnTheSecondSequencePart));
+        assertTrue(dna.isSimian(simianSequenceOnTheThirdSequencePart));
+        assertTrue(dna.isSimian(simianSequenceOnTheFourthSequencePart));
+        assertTrue(dna.isSimian(simianSequenceOnTheFifthSequencePart));
+        assertTrue(dna.isSimian(simianSequenceOnTheSixthSequencePart));
+    }
+
+    @Test
+    public void shouldReturnFalseWhenASimianSequenceIsNotPresentInDnaSequencePart() {
+        String[] dnaSequence = {"CCCAGC", "AAACCC", "CCGGAA", "ATCGAA", "CTGAGC", "CTGAGC"};
         assertFalse(dna.isSimian(dnaSequence));
     }
 
