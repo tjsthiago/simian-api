@@ -78,13 +78,13 @@ public class DnaTest {
     }
 
     @Test
-    public void shouldReturnTrueWhenASimanSequenceIsPresentInOneDnaSequencePart(){
+    public void shouldReturnTrueWhenASimianSequenceIsPresentInOneDnaSequencePart(){
         String[] dnaSequence = {"CCCCTA", "CTGAGA", "CTGAGC", "TATTGT", "AGAGGG", "TCACTG" };
         assertTrue(dna.isSimian(dnaSequence));
     }
 
     @Test
-    public void shouldReturnFalseWhenASimanSequenceIsNotPresentInOneDnaSequencePart(){
+    public void shouldReturnFalseWhenASimianSequenceIsNotPresentInOneDnaSequencePart(){
         String[] dnaSequence = {"CTGAGC", "CTGAGA", "CTGAGC", "TATTGT", "AGAGGG", "TCACTG" };
         assertTrue(dna.isSimian(dnaSequence));
     }
