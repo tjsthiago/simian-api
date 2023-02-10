@@ -77,4 +77,16 @@ public class DnaTest {
         assertDoesNotThrow(() -> dna.isSimian(dnaSequence));
     }
 
+    @Test
+    public void shouldReturnTrueWhenASimanSequenceIsPresentInOneDnaSequencePart(){
+        String[] dnaSequence = {"CCCCTA", "CTGAGA", "CTGAGC", "TATTGT", "AGAGGG", "TCACTG" };
+        assertTrue(dna.isSimian(dnaSequence));
+    }
+
+    @Test
+    public void shouldReturnFalseWhenASimanSequenceIsNotPresentInOneDnaSequencePart(){
+        String[] dnaSequence = {"CTGAGC", "CTGAGA", "CTGAGC", "TATTGT", "AGAGGG", "TCACTG" };
+        assertTrue(dna.isSimian(dnaSequence));
+    }
+
 }
