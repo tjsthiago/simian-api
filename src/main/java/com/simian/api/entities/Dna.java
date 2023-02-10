@@ -46,7 +46,7 @@ public class Dna {
                 dnaNitrogenBaseList.add(String.valueOf(dnaNitrogenBaseItem));
             }
 
-            Map<String, Long> nitrogenBaseSymbolOccurrences = mapNitrogenBaseSymbolOcurrences(dnaNitrogenBaseList);
+            Map<String, Long> nitrogenBaseSymbolOccurrences = mapNitrogenBaseSymbolOccurrences(dnaNitrogenBaseList);
 
             if(getHighestNitrogenBaseSymbolOccurrence(nitrogenBaseSymbolOccurrences) >= IS_SIMAN_SEQUENCE_TARGET){
                return true;
@@ -65,7 +65,7 @@ public class Dna {
                 .getValue();
     }
 
-    private Map<String, Long> mapNitrogenBaseSymbolOcurrences(List<String> dnaMatrixLineAsList) {
+    private Map<String, Long> mapNitrogenBaseSymbolOccurrences(List<String> dnaMatrixLineAsList) {
         return dnaMatrixLineAsList
                 .stream()
                 .collect(
