@@ -17,7 +17,7 @@ public class Dna {
 
     private static final String ALLOWED_NITROGEN_BASE_SYMBOL_REGEX = "\\w[ATCG]";
 
-    private static final Long IS_SIMAN_COUNT = 4L;
+    private static final Long IS_SIMAN_SEQUENCE_TARGET = 4L;
 
     private final Pattern pattern = Pattern.compile(ALLOWED_NITROGEN_BASE_SYMBOL_REGEX, Pattern.CASE_INSENSITIVE);
 
@@ -39,8 +39,6 @@ public class Dna {
     }
 
     private boolean validateHorizontally(char[][] dnaMatrix) {
-        boolean isSiman = false;
-
         for (char[] dnaMatrixLine : dnaMatrix) {
             List<String> dnaNitrogenBaseList = new ArrayList<>();
 
@@ -50,17 +48,15 @@ public class Dna {
 
             Map<String, Long> nitrogenBaseSymbolOccurrences = mapNitrogenBaseSymbolOcurrences(dnaNitrogenBaseList);
 
-            isSiman = getHighestMapOcurrence(nitrogenBaseSymbolOccurrences) >= IS_SIMAN_COUNT;
-
-            if(isSiman){
-               break;
+            if(getHighestNitrogenBaseSymbolOccurrence(nitrogenBaseSymbolOccurrences) >= IS_SIMAN_SEQUENCE_TARGET){
+               return true;
             }
         }
 
-        return isSiman;
+        return false;
     }
 
-    private static Long getHighestMapOcurrence(Map<String, Long> nitrogenBaseSymbolOccurrences) {
+    private static Long getHighestNitrogenBaseSymbolOccurrence(Map<String, Long> nitrogenBaseSymbolOccurrences) {
         return nitrogenBaseSymbolOccurrences
                 .entrySet()
                 .stream()
