@@ -31,7 +31,42 @@ public class Dna {
             return true;
         }
 
+
+        if(validateVertically(dnaMatrix)) {
+            return true;
+        }
+
+
         return false;
+    }
+
+    private boolean validateVertically(char[][] dnaMatrix) {
+        int dnaMatrixNumberOfColumns = dnaMatrix.length;
+
+        for (int dnaMatrixSequenceColumnIndex = 0; dnaMatrixSequenceColumnIndex < dnaMatrixNumberOfColumns; dnaMatrixSequenceColumnIndex++) {
+            char[] verticalDnaNitrogenBaseLineSequence = getVerticalDnaNitrogenBaseLineSequenceByDnaSequenceColumnIndex(
+                dnaMatrix,
+                dnaMatrixSequenceColumnIndex
+            );
+
+            if(hasSimianSequenceOccurrences(verticalDnaNitrogenBaseLineSequence)){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private char[] getVerticalDnaNitrogenBaseLineSequenceByDnaSequenceColumnIndex(char[][] dnaMatrix, int dnaMatrixSequenceColumnIndex) {
+        int dnaMatrixNumberOfRows = dnaMatrix[0].length;
+
+        char[] verticalDnaNitrogenBaseLineSequence = new char[dnaMatrixNumberOfRows];
+
+        for (int dnaMatrixSequenceLineIndex = 0; dnaMatrixSequenceLineIndex < dnaMatrixNumberOfRows; dnaMatrixSequenceLineIndex++) {
+            verticalDnaNitrogenBaseLineSequence[dnaMatrixSequenceLineIndex] = dnaMatrix[dnaMatrixSequenceLineIndex][dnaMatrixSequenceColumnIndex];
+        }
+
+        return verticalDnaNitrogenBaseLineSequence;
     }
 
     private boolean validateHorizontally(char[][] dnaMatrix) {

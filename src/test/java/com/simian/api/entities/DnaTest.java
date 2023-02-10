@@ -79,12 +79,12 @@ public class DnaTest {
 
     @Test
     public void shouldReturnTrueWhenASimianSequenceIsPresentInOneDnaSequencePart() {
-        String[] dnaSequence = {"CCCCTA", "CTGAGA", "CTGAGC", "TATTGT", "AGAGGG", "TCACTG"};
+        String[] dnaSequence = {"AAAACC", "CTGACT", "TGCACT", "GACTGA", "ACTGAC", "TGACTG"};
         assertTrue(dna.isSimian(dnaSequence));
     }
 
     @Test
-    public void shouldReturnTrueWhenASimianSequenceIsPresentInAVerticalWayInTheBeginningOfTheSequence() {
+    public void shouldReturnTrueWhenASimianSequenceIsPresentInAHorizontalWayInTheBeginningOfTheSequence() {
         String[] simianSequenceOnTheFirstSequencePart = {"AAAACC", "CTGACT", "TGCACT", "GACTGA", "ACTGAC", "TGACTG"};
         String[] simianSequenceOnTheSecondSequencePart = {"CTGACT", "AAAACC", "TGCACT", "GACTGA", "ACTGAC", "TGACTG"};
         String[] simianSequenceOnTheThirdSequencePart = {"CTGACT", "CTGACT", "AAAACC", "GACTGA", "ACTGAC", "TGACTG"};
@@ -101,7 +101,7 @@ public class DnaTest {
     }
 
     @Test
-    public void shouldReturnTrueWhenASimianSequenceIsPresentInAVerticalWayInTheEndOfTheSequence() {
+    public void shouldReturnTrueWhenASimianSequenceIsPresentInAHorizontalWayInTheEndOfTheSequence() {
         String[] simianSequenceOnTheFirstSequencePart = {"CCAAAA", "CTGACT", "TGCACT", "GACTGA", "ACTGAC", "TGACTG"};
         String[] simianSequenceOnTheSecondSequencePart = {"CTGACT", "CCAAAA", "TGCACT", "GACTGA", "ACTGAC", "TGACTG"};
         String[] simianSequenceOnTheThirdSequencePart = {"CTGACT", "CTGACT", "CCAAAA", "GACTGA", "ACTGAC", "TGACTG"};
@@ -118,7 +118,7 @@ public class DnaTest {
     }
 
     @Test
-    public void shouldReturnTrueWhenASimianSequenceIsPresentInAVerticalWayStartingInSecondIndexTheOfTheSequence() {
+    public void shouldReturnTrueWhenASimianSequenceIsPresentInAHorizontalWayStartingInSecondIndexTheOfTheSequence() {
         String[] simianSequenceOnTheFirstSequencePart = {"CAAAAC", "CTGACT", "TGCACT", "GACTGA", "ACTGAC", "TGACTG"};
         String[] simianSequenceOnTheSecondSequencePart = {"CTGACT", "CAAAAC", "TGCACT", "GACTGA", "ACTGAC", "TGACTG"};
         String[] simianSequenceOnTheThirdSequencePart = {"CTGACT", "CTGACT", "CAAAAC", "GACTGA", "ACTGAC", "TGACTG"};
@@ -132,6 +132,64 @@ public class DnaTest {
         assertTrue(dna.isSimian(simianSequenceOnTheFourthSequencePart));
         assertTrue(dna.isSimian(simianSequenceOnTheFifthSequencePart));
         assertTrue(dna.isSimian(simianSequenceOnTheSixthSequencePart));
+    }
+
+    @Test
+    public void shouldReturnTrueWhenASimianSequenceIsPresentInAVerticalWayInTheBeginningOfTheSequence() {
+        String[] simianSequenceOnTheFirstDnaMatrixColumn = {"ATATAT", "AGCGCG", "AATATA", "ACGCGC", "CTATAT", "CGCGCG"};
+        String[] simianSequenceOnTheSecondDnaMatrixColumn = {"ATATAT", "CTCGCG", "GTGATA", "GTGCGC", "ACATAT", "CGCGCG"};
+        String[] simianSequenceOnTheThirdDnaMatrixColumn = {"ATATAT", "CGAGCG", "TTATTA", "GCACGC", "ATCTAT", "CGCGCG"};
+        String[] simianSequenceOnTheFourthDnaMatrixColumn = {"ATATAT", "CGCTCG", "TACTCA", "GCGTGC", "ATACAT", "CGCGCG"};
+        String[] simianSequenceOnTheFifthDnaMatrixColumn = {"ATATAT", "CGCGAG", "TATCAC", "GCGCAC", "ATATCT", "CGCGCG"};
+        String[] simianSequenceOnTheSixthDnaMatrixColumn = {"ATATAT", "CGCGCT", "TATAAT", "GCGCGT", "ATATAC", "CGCGCG"};
+
+        assertTrue(dna.isSimian(simianSequenceOnTheFirstDnaMatrixColumn));
+        assertTrue(dna.isSimian(simianSequenceOnTheSecondDnaMatrixColumn));
+        assertTrue(dna.isSimian(simianSequenceOnTheThirdDnaMatrixColumn));
+        assertTrue(dna.isSimian(simianSequenceOnTheFourthDnaMatrixColumn));
+        assertTrue(dna.isSimian(simianSequenceOnTheFifthDnaMatrixColumn));
+        assertTrue(dna.isSimian(simianSequenceOnTheSixthDnaMatrixColumn));
+    }
+
+    @Test
+    public void shouldReturnTrueWhenASimianSequenceIsPresentInAVerticalWayInTheEndOfTheSequence() {
+        String[] simianSequenceOnTheFirstDnaMatrixColumn = {"ATATAT", "CGCGCG", "TATATA", "TCGCGC", "TTATAT", "TGCGCG"};
+        String[] simianSequenceOnTheSecondDnaMatrixColumn = {"ATATAT", "CACGCG", "TGTATA", "CGCCGC", "AGATAT", "CGCGCG"};
+        String[] simianSequenceOnTheThirdDnaMatrixColumn = {"ATATAT", "CGCGCG", "TATATA", "GCTCGC", "AATAAT", "CGTGCG"};
+        String[] simianSequenceOnTheFourthDnaMatrixColumn = {"ATATAT", "CGCGCG", "TATATA", "GCGAGC", "ATTATT", "CGCACG"};
+        String[] simianSequenceOnTheFifthDnaMatrixColumn = {"ATATAT", "CGCGCG", "TATATA", "GCGCTC", "ATAATA", "CGCGTG"};
+        String[] simianSequenceOnTheSixthDnaMatrixColumn = {"ATATAT", "CGCGCG", "TATATA", "GCGCGA", "ATATAA", "CGCGCA"};
+
+        assertTrue(dna.isSimian(simianSequenceOnTheFirstDnaMatrixColumn));
+        assertTrue(dna.isSimian(simianSequenceOnTheSecondDnaMatrixColumn));
+        assertTrue(dna.isSimian(simianSequenceOnTheThirdDnaMatrixColumn));
+        assertTrue(dna.isSimian(simianSequenceOnTheFourthDnaMatrixColumn));
+        assertTrue(dna.isSimian(simianSequenceOnTheFifthDnaMatrixColumn));
+        assertTrue(dna.isSimian(simianSequenceOnTheSixthDnaMatrixColumn));
+    }
+
+    @Test
+    public void shouldReturnTrueWhenASimianSequenceIsPresentInAVerticalWayStartingInSecondIndexTheOfTheSequence() {
+        String[] simianSequenceOnTheFirstDnaMatrixColumn = {"ATATAT", "CGCGCG", "CATATA", "CTGCGC", "CTATAT", "TGCGCG"};
+        String[] simianSequenceOnTheSecondDnaMatrixColumn = {"ATATAT", "CGCGCG", "TGTATA", "CGCCGC", "AGATAT", "CTCGCG"};
+        String[] simianSequenceOnTheThirdDnaMatrixColumn = {"ATATAT", "CGCGCG", "TACATA", "GTCTGC", "ATCTAT", "CGAGCG"};
+        String[] simianSequenceOnTheFourthDnaMatrixColumn = {"ATATAT", "CGCGCG", "TATGTA", "GCTGTC", "ATAGAT", "CGCACG"};
+        String[] simianSequenceOnTheFifthDnaMatrixColumn = {"ATATAT", "CGCGCG", "TATACA", "GCGACA", "ATATCT", "CGCGAG"};
+        String[] simianSequenceOnTheSixthDnaMatrixColumn = {"ATATAT", "CGCGCG", "TATATG", "GCGCTG", "ATATAG", "CGCGCT"};
+
+        assertTrue(dna.isSimian(simianSequenceOnTheFirstDnaMatrixColumn));
+        assertTrue(dna.isSimian(simianSequenceOnTheSecondDnaMatrixColumn));
+        assertTrue(dna.isSimian(simianSequenceOnTheThirdDnaMatrixColumn));
+        assertTrue(dna.isSimian(simianSequenceOnTheFourthDnaMatrixColumn));
+        assertTrue(dna.isSimian(simianSequenceOnTheFifthDnaMatrixColumn));
+        assertTrue(dna.isSimian(simianSequenceOnTheSixthDnaMatrixColumn));
+    }
+
+    @Test
+    public void shouldReturnFalseWhenASimianSequenceIsPresentInAVerticalWay() {
+        String[] simianSequenceOnTheFirstDnaMatrixColumn = {"CCTGAC", "AGACTG", "ACTGAC", "AGACTG", "TCTGAC", "TCACTG"};
+
+        assertFalse(dna.isSimian(simianSequenceOnTheFirstDnaMatrixColumn));
     }
 
     @Test
