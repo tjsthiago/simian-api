@@ -44,6 +44,49 @@ public class Dna {
             return true;
         }
 
+        if(validateDiagonalFromLeft(dnaMatrix)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean validateDiagonalFromLeft(char[][] dnaMatrix) {
+        int dnaMatrixIndexesQuantity = dnaMatrix.length -1;
+
+        for (int matrixRowIndex = 0; matrixRowIndex < dnaMatrix.length; matrixRowIndex++) {
+            char[] topDiagonalDnaNitrogenBaseLineSequence = new char[matrixRowIndex + 1];
+            char[] bottomDiagonalDnaNitrogenBaseLineSequence = new char[matrixRowIndex + 1];
+
+            int topColumnIndex = dnaMatrixIndexesQuantity - matrixRowIndex;
+            int bottomRowIndex = dnaMatrixIndexesQuantity;
+
+            for (int matrixColumnIndex = 0; matrixColumnIndex <= matrixRowIndex; matrixColumnIndex++) {
+                int topRowIndex = matrixColumnIndex;
+                char topDiagonalItem = dnaMatrix[topRowIndex][topColumnIndex];
+
+                int bottomColumnIndex = dnaMatrixIndexesQuantity - topColumnIndex;
+                char bottomDiagonalItem = dnaMatrix[bottomRowIndex][bottomColumnIndex];
+
+                topDiagonalDnaNitrogenBaseLineSequence[matrixColumnIndex] = topDiagonalItem;
+                bottomDiagonalDnaNitrogenBaseLineSequence[matrixColumnIndex] = bottomDiagonalItem;
+
+                topColumnIndex++;
+                bottomRowIndex--;
+            }
+
+            if(topDiagonalDnaNitrogenBaseLineSequence.length >= 4 && bottomDiagonalDnaNitrogenBaseLineSequence.length >= 4) {
+                if(hasSimianSequenceOccurrences(topDiagonalDnaNitrogenBaseLineSequence)){
+                    return true;
+                }
+
+                if(hasSimianSequenceOccurrences(bottomDiagonalDnaNitrogenBaseLineSequence)){
+                    return true;
+                }
+            }
+
+        }
+
         return false;
     }
 
