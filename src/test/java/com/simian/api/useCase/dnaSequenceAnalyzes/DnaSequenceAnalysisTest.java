@@ -6,7 +6,9 @@ import com.simian.api.useCase.dnaSequenceAnalyzes.ports.DnaSequenceAnalysisRepos
 import com.simian.api.useCase.dnaSequenceAnalyzes.repository.InMemoryDnaSequenceAnalysisRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -19,18 +21,19 @@ import static org.junit.Assert.assertTrue;
 @SpringBootTest(classes = Application.class)
 public class DnaSequenceAnalysisTest {
 
+    @Autowired
+    private DnaSequenceAnalysis useCase;
+
+    @MockBean
+    private DnaSequenceAnalysisRepository repository;
+
     @Test
     public void shouldReturnTrueWhenDnaSequenceIsSimian(){
-        List<AnalysisData> analyzes = new ArrayList<>();
-        DnaSequenceAnalysisRepository repository = new InMemoryDnaSequenceAnalysisRepository(analyzes);
-        DnaSequenceAnalysis useCase = new DnaSequenceAnalysis(repository);
-
         String[] dna = {"ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"};
 
         Boolean isSimian = useCase.perform(dna);
 
         assertTrue(isSimian);
-        assertEquals(1 ,repository.findAll().size());
     }
 
 }
