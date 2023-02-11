@@ -186,6 +186,24 @@ public class DnaTest {
     }
 
     @Test
+    public void shouldReturnTrueWhenASimianSequenceIsPresentInTheRightDiagonalsInTheBeginningOfTheSequence() {
+        String[] simianSequenceOnTheFirstPossibleTopRightDnaMatrixDiagonal = {"GACAGA", "GCACTG", "GACTGA", "ACTGAC", "TGACTG", "ACTGAC"};
+        String[] simianSequenceOnTheSecondPossibleTopRightDnaMatrixDiagonal = {"GACGCA", "GCACTG", "GACTGA", "ACTGAC", "TGACTG", "ACTGAC"};
+        String[] simianSequenceOnTheThirdPossibleTopRightDnaMatrixDiagonal = {"GACAGT", "GCACTG", "GACTGA", "ACTGAC", "TGACTG", "ACTGAC"};
+
+        String[] simianSequenceOnTheFirstPossibleBottomRightDnaMatrixDiagonal = {"GACGGA", "GCACTG", "GACTGA", "ACTGAC", "TGAATG", "ACAGAC"};
+        String[] simianSequenceOnTheSecondPossibleBottomRightDnaMatrixDiagonal = {"GACGGA", "GCACTG", "GACTGA", "ACTGAC", "TGGGTG", "ACAGAC"};
+        String[] simianSequenceOnTheThirdPossibleBottomRightDnaMatrixDiagonal = {"GACGGT", "GCACTG", "GACTGA", "ACTGAC", "TGACTG", "ACAGAC"};
+
+        assertTrue(dna.isSimian(simianSequenceOnTheFirstPossibleTopRightDnaMatrixDiagonal));
+        assertTrue(dna.isSimian(simianSequenceOnTheSecondPossibleTopRightDnaMatrixDiagonal));
+        assertTrue(dna.isSimian(simianSequenceOnTheThirdPossibleTopRightDnaMatrixDiagonal));
+        assertTrue(dna.isSimian(simianSequenceOnTheFirstPossibleBottomRightDnaMatrixDiagonal));
+        assertTrue(dna.isSimian(simianSequenceOnTheSecondPossibleBottomRightDnaMatrixDiagonal));
+        assertTrue(dna.isSimian(simianSequenceOnTheThirdPossibleBottomRightDnaMatrixDiagonal));
+    }
+
+    @Test
     public void shouldReturnFalseWhenASimianSequenceIsPresentInAVerticalWay() {
         String[] simianSequenceOnTheFirstDnaMatrixColumn = {"CCTGAC", "AGACTG", "ACTGAC", "AGACTG", "TCTGAC", "TCACTG"};
 

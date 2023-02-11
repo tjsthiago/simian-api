@@ -2,12 +2,12 @@ package com.simian.api.entities;
 
 import com.simian.api.entities.errors.InvalidDnaSequenceError;
 import org.springframework.stereotype.Service;
+import org.yaml.snakeyaml.util.ArrayUtils;
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 @Service
 public class Dna {
@@ -16,7 +16,12 @@ public class Dna {
 
     private static final int IS_SIMAN_SEQUENCE_TARGET = 4;
 
-    private final Pattern pattern = Pattern.compile(ALLOWED_NITROGEN_BASE_SYMBOL_REGEX, Pattern.CASE_INSENSITIVE);
+    private static final int DNA_MATRIX_SIZE_LIMIT = 6;
+
+    private final Pattern NITROGEN_BASE_PATTERN = Pattern.compile(
+        ALLOWED_NITROGEN_BASE_SYMBOL_REGEX,
+        Pattern.CASE_INSENSITIVE
+    );
 
     public Boolean isSimian(String[] dna) {
         validateDnaSequence(dna);
@@ -31,11 +36,48 @@ public class Dna {
             return true;
         }
 
-
         if(validateVertically(dnaMatrix)) {
             return true;
         }
 
+        if(validateDiagonalFromRight(dnaMatrix)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean validateDiagonalFromRight(char[][] dnaMatrix) {
+        int dnaMatrixIndexesQuantity = dnaMatrix.length -1;
+
+        for (int matrixRowIndex = 0; matrixRowIndex < dnaMatrix.length; matrixRowIndex++) {
+            char[] topDiagonalDnaNitrogenBaseLineSequence = new char[matrixRowIndex + 1];
+            char[] bottomDiagonalDnaNitrogenBaseLineSequence = new char[matrixRowIndex + 1];
+
+            for (int matrixColumnIndex = 0; matrixColumnIndex <= matrixRowIndex; matrixColumnIndex++) {
+                int topRowIndex = matrixRowIndex - matrixColumnIndex;
+                int topColumnIndex = matrixColumnIndex;
+                char topDiagonalItem = dnaMatrix[topRowIndex][topColumnIndex];
+
+                int bottomRowIndex = dnaMatrixIndexesQuantity - topRowIndex;
+                int bottomColumnIndex = dnaMatrixIndexesQuantity - topColumnIndex;
+                char bottomDiagonalItem = dnaMatrix[bottomRowIndex][bottomColumnIndex];
+
+                topDiagonalDnaNitrogenBaseLineSequence[matrixColumnIndex] = topDiagonalItem;
+                bottomDiagonalDnaNitrogenBaseLineSequence[matrixColumnIndex] = bottomDiagonalItem;
+            }
+
+            if(topDiagonalDnaNitrogenBaseLineSequence.length >= 4 && bottomDiagonalDnaNitrogenBaseLineSequence.length >= 4) {
+                if(hasSimianSequenceOccurrences(topDiagonalDnaNitrogenBaseLineSequence)){
+                    return true;
+                }
+
+                if(hasSimianSequenceOccurrences(bottomDiagonalDnaNitrogenBaseLineSequence)){
+                    return true;
+                }
+            }
+
+        }
 
         return false;
     }
@@ -105,19 +147,8 @@ public class Dna {
         return false;
     }
 
-    private Map<String, Long> mapNitrogenBaseSymbolOccurrences(List<String> dnaMatrixLineAsList) {
-        return dnaMatrixLineAsList
-                .stream()
-                .collect(
-                    Collectors.groupingBy(
-                        Function.identity(),
-                        Collectors.counting()
-                    )
-                );
-    }
-
     private char[][] initDnaMatrix(String[] dna) {
-        char[][] dnaMatrix = new char[6][6];
+        char[][] dnaMatrix = new char[DNA_MATRIX_SIZE_LIMIT][DNA_MATRIX_SIZE_LIMIT];
 
         for (int i = 0; i < dna.length; i++) {
             char[] dnaNitrogenBaseList = dna[i].toCharArray();
@@ -135,12 +166,12 @@ public class Dna {
             throw new InvalidDnaSequenceError("DNA sequence must not be empty");
         }
 
-        if(dna.length != 6){
+        if(dna.length != DNA_MATRIX_SIZE_LIMIT){
             throw new InvalidDnaSequenceError("DNA sequence must have 6 parts");
         }
 
         for (String dnaSequencePart : dna) {
-            if(dnaSequencePart.length() != 6){
+            if(dnaSequencePart.length() != DNA_MATRIX_SIZE_LIMIT){
                 throw new InvalidDnaSequenceError("DNA sequence part must have 6 digits");
             }
 
@@ -152,7 +183,7 @@ public class Dna {
     }
 
     private boolean isDnaSequencePartValid(String dnaSequencePart) {
-        Matcher matcher = pattern.matcher(dnaSequencePart);
+        Matcher matcher = NITROGEN_BASE_PATTERN.matcher(dnaSequencePart);
         return matcher.find();
     }
 }
