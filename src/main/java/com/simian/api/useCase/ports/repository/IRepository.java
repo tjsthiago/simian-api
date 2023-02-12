@@ -1,4 +1,4 @@
-package com.simian.api.useCase.dnaSequenceAnalyzes.ports;
+package com.simian.api.useCase.ports.repository;
 
 import com.simian.api.entities.AnalysisData;
 import org.springframework.stereotype.Repository;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface DnaSequenceAnalysisRepository {
+public interface IRepository {
 
     public AnalysisData save(AnalysisData analysis);
 

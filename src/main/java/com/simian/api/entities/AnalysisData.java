@@ -15,7 +15,7 @@ public class AnalysisData {
         return hash;
     }
 
-    public Boolean getSimianDna() {
+    public Boolean isSimianDna() {
         return isSimianDna;
     }
 

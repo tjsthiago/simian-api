@@ -2,8 +2,8 @@ package com.simian.api.useCase.dnaSequenceAnalyzes.repository;
 
 import com.simian.api.Application;
 import com.simian.api.entities.AnalysisData;
-import com.simian.api.useCase.dnaSequenceAnalyzes.DnaSequenceAnalysis;
-import com.simian.api.useCase.dnaSequenceAnalyzes.ports.DnaSequenceAnalysisRepository;
+import com.simian.api.useCase.ports.repository.IRepository;
+import com.simian.api.useCase.ports.repository.InMemoryRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,7 +21,7 @@ public class InMemoryDnaSequenceAnalysisRepositoryTest {
     @Test
     public void shouldReturnFalseIfAnalysisIsNotFound() {
         List<AnalysisData> analyzes = new ArrayList<>();
-        DnaSequenceAnalysisRepository repository = new InMemoryDnaSequenceAnalysisRepository(analyzes);
+        IRepository repository = new InMemoryRepository(analyzes);
 
         AnalysisData analysis = new AnalysisData("analysis-hash", Boolean.TRUE);
 
@@ -31,7 +31,7 @@ public class InMemoryDnaSequenceAnalysisRepositoryTest {
     @Test
     public void shouldReturnTrueIfAnalysisIsFound() {
         List<AnalysisData> analyzes = new ArrayList<>();
-        DnaSequenceAnalysisRepository repository = new InMemoryDnaSequenceAnalysisRepository(analyzes);
+        IRepository repository = new InMemoryRepository(analyzes);
 
         AnalysisData analysis = new AnalysisData("analysis-hash", Boolean.TRUE);
         repository.save(analysis);
@@ -42,7 +42,7 @@ public class InMemoryDnaSequenceAnalysisRepositoryTest {
     @Test
     public void shouldReturnAllAnalyzes() {
         List<AnalysisData> analyzes = new ArrayList<>();
-        DnaSequenceAnalysisRepository repository = new InMemoryDnaSequenceAnalysisRepository(analyzes);
+        IRepository repository = new InMemoryRepository(analyzes);
 
         repository.save(new AnalysisData("analysis-01-hash", Boolean.TRUE));
         repository.save(new AnalysisData("analysis-02-hash", Boolean.TRUE));
@@ -53,7 +53,7 @@ public class InMemoryDnaSequenceAnalysisRepositoryTest {
     @Test
     public void shouldNotSaveDuplicatedAnalysis() {
         List<AnalysisData> analyzes = new ArrayList<>();
-        DnaSequenceAnalysisRepository repository = new InMemoryDnaSequenceAnalysisRepository(analyzes);
+        IRepository repository = new InMemoryRepository(analyzes);
 
         repository.save(new AnalysisData("duplicated-hash", Boolean.TRUE));
         repository.save(new AnalysisData("duplicated-hash", Boolean.TRUE));

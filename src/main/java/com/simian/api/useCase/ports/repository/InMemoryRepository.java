@@ -1,15 +1,14 @@
-package com.simian.api.useCase.dnaSequenceAnalyzes.repository;
+package com.simian.api.useCase.ports.repository;
 
 import com.simian.api.entities.AnalysisData;
-import com.simian.api.useCase.dnaSequenceAnalyzes.ports.DnaSequenceAnalysisRepository;
 
 import java.util.List;
 
-public class InMemoryDnaSequenceAnalysisRepository implements DnaSequenceAnalysisRepository {
+public class InMemoryRepository implements IRepository {
 
     List<AnalysisData> analyzes;
 
-    public InMemoryDnaSequenceAnalysisRepository(List<AnalysisData> analyzes) {
+    public InMemoryRepository(List<AnalysisData> analyzes) {
         this.analyzes = analyzes;
     }
 

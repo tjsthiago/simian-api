@@ -1,4 +1,4 @@
-package com.simian.api.controllers;
+package com.simian.api.controllers.dnaSequenceAnalyzes;
 
 public class DnaSequenceAnalysisRequest {
     String[] dna;
