@@ -17,18 +17,10 @@ public class ConsultDnaSequenceAnalyzesStats {
     }
 
     public DnaSequenceAnalyzesStats getDnaSequenceAnalyzesStats() {
-        List<AnalysisData> analyzes = repository.findAll();
-
-        long totalOfSimians = analyzes.stream().filter(AnalysisData::isSimianDna).count();
-        long totalOfHumans = analyzes.size() - totalOfSimians;
-
-        double ratio = 0;
-
-        if (totalOfHumans == 0) {
-            ratio = 0;
-        } else {
-            ratio = (double) totalOfSimians / totalOfHumans;
-        }
+        int totalOfAnalyzes = this.repository.count();
+        long totalOfSimians = this.repository.countByIsSimian(true);
+        long totalOfHumans = totalOfAnalyzes - totalOfSimians;
+        double ratio = totalOfHumans == 0 ? 0 : (double) totalOfSimians / totalOfHumans;
 
         return new DnaSequenceAnalyzesStats(
                 totalOfSimians,

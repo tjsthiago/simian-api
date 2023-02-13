@@ -35,4 +35,14 @@ public class InMemoryRepository implements IRepository {
                 .anyMatch(d -> d.getHash().equalsIgnoreCase(analysis.getHash()));
     }
 
+    @Override
+    public int count() {
+        return this.analyzes.size();
+    }
+
+    @Override
+    public Long countByIsSimian(Boolean isSimian) {
+        return this.analyzes.stream().filter(AnalysisData::isSimianDna).count();
+    }
+
 }

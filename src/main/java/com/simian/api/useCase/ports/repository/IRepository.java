@@ -13,4 +13,9 @@ public interface IRepository {
     public List<AnalysisData> findAll();
 
     public Boolean exists(AnalysisData analysis);
+
+    public int count();
+
+    public Long countByIsSimian(Boolean isSimian);
+
 }
