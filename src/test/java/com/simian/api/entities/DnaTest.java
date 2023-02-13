@@ -204,7 +204,7 @@ public class DnaTest {
         assertTrue(dna.isSimian(simianSequenceOnTheThirdPossibleBottomRightDiagonalDnaMatrix));
     }
     @Test
-    public void shouldReturnTrueWhenASimianSequenceIsNotPresentInTheLeftDiagonalsInTheBeginningOfTheSequence() {
+    public void shouldReturnTrueWhenASimianSequenceIsPresentInTheLeftDiagonalsInTheBeginningOfTheSequence() {
         String[] simianSequenceOnTheFirstPossibleTopRightDiagonalDnaMatrix = {"GACGGA", "GCACTG", "GACTCA", "ACTGAC", "TGACCG", "ACACAC"};
         String[] simianSequenceOnTheSecondPossibleTopRightDiagonalDnaMatrix = {"GACGGA", "GCACTG", "GACAGA", "ACTAAC", "TGACCG", "ACACAC"};
         String[] simianSequenceOnTheThirdPossibleTopRightDiagonalDnaMatrix = {"GACGGA", "GGACTG", "GAGTGA", "ACTGAC", "TGACCG", "ACACAC"};

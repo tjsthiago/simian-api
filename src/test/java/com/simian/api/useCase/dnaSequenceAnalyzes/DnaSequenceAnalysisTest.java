@@ -1,7 +1,7 @@
 package com.simian.api.useCase.dnaSequenceAnalyzes;
 
 import com.simian.api.Application;
-import com.simian.api.useCase.ports.repository.IRepository;
+import com.simian.api.external.repository.AnalysisDataRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class DnaSequenceAnalysisTest {
     private DnaSequenceAnalysis useCase;
 
     @MockBean
-    private IRepository repository;
+    private AnalysisDataRepository repository;
 
     @Test
     public void shouldReturnTrueWhenDnaSequenceIsSimian(){

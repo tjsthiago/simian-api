@@ -3,7 +3,7 @@ package com.simian.api.useCase.dnaSequenceAnalyzes;
 import com.simian.api.Application;
 import com.simian.api.controllers.consultDnaSequenceAnalyzesStats.DnaSequenceAnalyzesStats;
 import com.simian.api.useCase.consultDnaSequenceAnalyzesStats.ConsultDnaSequenceAnalyzesStats;
-import com.simian.api.useCase.ports.repository.IRepository;
+import com.simian.api.external.repository.AnalysisDataRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -25,7 +25,7 @@ public class ConsultDnaSequenceAnalyzesStatsTest {
     private ConsultDnaSequenceAnalyzesStats useCase;
 
     @MockBean
-    private IRepository repository;
+    private AnalysisDataRepository repository;
 
     @Test
     public void shouldNotThrowExceptionWhenAnalyzesIsEmpty(){
@@ -35,7 +35,7 @@ public class ConsultDnaSequenceAnalyzesStatsTest {
 
     @Test
     public void shouldReturnARatioEqualToOneForTheSameNumberOfMutantsAndHumans() {
-        Mockito.when(repository.count()).thenReturn(2);
+        Mockito.when(repository.count()).thenReturn(2L);
         Mockito.when(repository.countByIsSimian(true)).thenReturn(1L);
 
         DnaSequenceAnalyzesStats response = useCase.getDnaSequenceAnalyzesStats();
@@ -45,7 +45,7 @@ public class ConsultDnaSequenceAnalyzesStatsTest {
 
     @Test
     public void shouldReturnARatioEqualToZeroDotFourForTheSameNumberOfFortyMutantsAndOneHundredHumans() {
-        Mockito.when(repository.count()).thenReturn(140);
+        Mockito.when(repository.count()).thenReturn(140L);
         Mockito.when(repository.countByIsSimian(true)).thenReturn(40L);
 
         DnaSequenceAnalyzesStats response = useCase.getDnaSequenceAnalyzesStats();

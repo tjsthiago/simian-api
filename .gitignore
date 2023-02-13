@@ -34,3 +34,6 @@ build/
 
 ### MAVEN ###
 .mvn/
+
+### postgres ###
+database-docker/postgres-data
