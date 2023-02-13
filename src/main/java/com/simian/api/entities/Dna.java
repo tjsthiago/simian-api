@@ -2,10 +2,7 @@ package com.simian.api.entities;
 
 import com.simian.api.entities.errors.InvalidDnaSequenceError;
 import org.springframework.stereotype.Service;
-import org.yaml.snakeyaml.util.ArrayUtils;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
